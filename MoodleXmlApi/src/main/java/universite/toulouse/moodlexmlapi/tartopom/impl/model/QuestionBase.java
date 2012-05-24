@@ -17,10 +17,10 @@ public abstract class QuestionBase implements
 
 	private Float defaultGrade;
 	private List<QuestionError> errors;
-	private String generalFeedBack;
+	private EnclosedText generalFeedBack;
 	private String imageBase64;
 	private String imageURL;
-	private String name;
+	private EnclosedText name;
 	private Float penalty;
 	private QuestionText questionText;
 	private QuestionType questionType;
@@ -36,8 +36,12 @@ public abstract class QuestionBase implements
 		return this.errors;
 	}
 
+	public String getGeneralFeedback(){
+		return this.generalFeedBack.getText();
+	}
+	
 	@XmlElement(name="generalfeedback")
-	public String getGeneralFeedBack() {
+	public EnclosedText getGeneralFeedBackBis() {
 		return this.generalFeedBack;
 	}
 
@@ -51,9 +55,13 @@ public abstract class QuestionBase implements
 		return this.imageURL;
 	}
 
-	
-	public String getName() {
+	@XmlElement(name="name")
+	public EnclosedText getNameBis() {
 		return this.name;
+	}
+	
+	public String getName(){
+		return this.name.getText();
 	}
 
 	@XmlElement(name="penalty")
@@ -61,6 +69,7 @@ public abstract class QuestionBase implements
 		return this.penalty;
 	}
 
+	@XmlElement(name="questiontext")
 	public QuestionText getQuestionText() {
 		return this.questionText;
 	}
@@ -70,6 +79,7 @@ public abstract class QuestionBase implements
 		return this.questionType;
 	}
 
+	@XmlElement(name="hidden")
 	public Boolean isHidden() {
 		return this.hidden;
 	}
