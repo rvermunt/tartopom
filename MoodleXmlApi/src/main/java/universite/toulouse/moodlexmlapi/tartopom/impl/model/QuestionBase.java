@@ -1,13 +1,18 @@
-package model;
+package universite.toulouse.moodlexmlapi.tartopom.impl.model;
 
 import java.util.List;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+
+import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorNode;
 
 import universite.toulouse.moodlexmlapi.core.data.QuestionError;
 import universite.toulouse.moodlexmlapi.core.data.QuestionText;
 import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 
-@XmlDescriminatorNode("@type")
-public abstract class Question implements
+@XmlDiscriminatorNode("@type")
+public abstract class QuestionBase implements
 		universite.toulouse.moodlexmlapi.core.data.Question {
 
 	private Float defaultGrade;
@@ -17,13 +22,13 @@ public abstract class Question implements
 	private String imageURL;
 	private String name;
 	private Float penalty;
-	private String questionText;
-	private String questionType;
+	private QuestionText questionText;
+	private QuestionType questionType;
 	private boolean hidden;
 	
 	@XmlElement(name="defaultgrade")
 	public Float getDefaultGrade() {
-		return this.defaultGrade
+		return this.defaultGrade;
 	}
 
 	
@@ -33,14 +38,12 @@ public abstract class Question implements
 
 	@XmlElement(name="generalfeedback")
 	public String getGeneralFeedBack() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.generalFeedBack;
 	}
 
 	@XmlElement(name="image_base64")
 	public String getImageBase64() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.imageBase64;
 	}
 
 	@XmlElement(name="image")
@@ -50,8 +53,7 @@ public abstract class Question implements
 
 	
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 
 	@XmlElement(name="penalty")
@@ -60,18 +62,16 @@ public abstract class Question implements
 	}
 
 	public QuestionText getQuestionText() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.questionText;
 	}
 
 	@XmlAttribute(name="type")
 	public QuestionType getQuestionType() {
-		return this.
+		return this.questionType;
 	}
 
 	public Boolean isHidden() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.hidden;
 	}
 
 }
