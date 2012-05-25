@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorNode;
 
@@ -13,12 +14,12 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 
 /**
  * Classe abstraite representant la base de tous les types de questions
- * 
+ *
  * @author rvermunt
- * 
+ *
  */
 @XmlDiscriminatorNode("@type")
-public abstract class QuestionBase implements
+public class QuestionBase implements
         universite.toulouse.moodlexmlapi.core.data.Question {
 
     private Float defaultGrade;
@@ -44,6 +45,7 @@ public abstract class QuestionBase implements
     /**
      * @return errors
      */
+    @XmlTransient
     @Override
     public List<QuestionError> getErrors() {
         return this.errors;
@@ -87,6 +89,7 @@ public abstract class QuestionBase implements
      * @return name
      */
     @Override
+    @XmlTransient
     public String getName() {
         return this.name.getText();
     }
@@ -112,8 +115,19 @@ public abstract class QuestionBase implements
      * @return questionText
      */
     @Override
-    @XmlElement(name = "questiontext")
+    @XmlTransient
     public QuestionText getQuestionText() {
+        return new QuestionText(this.questionText.getText(),
+                this.questionText.getQuestionTextFormat());
+    }
+
+    /**
+     * Renvoie le texte de la question
+     *
+     * @return le texte de la question
+     */
+    @XmlElement(name = "questiontext")
+    public QuestionTextAdaptated getQuestionTextAdaptated() {
         return this.questionText;
     }
 
@@ -220,7 +234,8 @@ public abstract class QuestionBase implements
      *            QuestionText
      */
     public void setQuestionText(QuestionText questionText) {
-        this.questionText = (QuestionTextAdaptated) questionText;
+        this.questionText = new QuestionTextAdaptated(questionText.getText(),
+                questionText.getQuestionTextFormat());
     }
 
     /**
