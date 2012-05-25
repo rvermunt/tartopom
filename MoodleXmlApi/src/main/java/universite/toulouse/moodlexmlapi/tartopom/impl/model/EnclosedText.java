@@ -12,6 +12,14 @@ public class EnclosedText {
     private String text;
 
     /**
+     * Instancie un nouveau EnclosedText
+     * @param text String
+     */
+    public EnclosedText(String text){
+        this.text=text;
+    }
+
+    /**
      * @return text
      */
     @XmlElement(name="text")
