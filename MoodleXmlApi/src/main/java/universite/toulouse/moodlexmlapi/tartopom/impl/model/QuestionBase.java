@@ -12,13 +12,11 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionText;
 import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 
 /**
- * Classe abstraite representant la base de tous les types de questions
- * 
+ * Classe representant la base de tous les types de questions
  * @author rvermunt
- * 
  */
 @XmlDiscriminatorNode("@type")
-public abstract class QuestionBase implements
+public class QuestionBase implements
         universite.toulouse.moodlexmlapi.core.data.Question {
 
     private Float defaultGrade;
@@ -33,9 +31,39 @@ public abstract class QuestionBase implements
     private boolean hidden;
 
     /**
+     * @param defaultGrade Float
+     * @param errors List<QuestionError>
+     * @param genFeedBack EnclosedText
+     * @param imageBase64 String
+     * @param imageURL String
+     * @param name EnclosedText
+     * @param penalty Float
+     * @param questionText QuestionText
+     * @param questionType QuestionType
+     * @param hidden boolean
+     */
+    public QuestionBase(Float defaultGrade, List<QuestionError> errors,
+            EnclosedText genFeedBack, String imageBase64, String imageURL,
+            EnclosedText name, Float penalty,
+            QuestionTextAdaptated questionText, QuestionType questionType,
+            boolean hidden) {
+        super();
+        this.defaultGrade = defaultGrade;
+        this.errors = errors;
+        this.genFeedBack = genFeedBack;
+        this.imageBase64 = imageBase64;
+        this.imageURL = imageURL;
+        this.name = name;
+        this.penalty = penalty;
+        this.questionText = questionText;
+        this.questionType = questionType;
+        this.hidden = hidden;
+    }
+
+    /**
      * @return defaultGrade
      */
-    @Override
+
     @XmlElement(name = "defaultgrade")
     public Float getDefaultGrade() {
         return this.defaultGrade;
@@ -44,7 +72,7 @@ public abstract class QuestionBase implements
     /**
      * @return errors
      */
-    @Override
+
     public List<QuestionError> getErrors() {
         return this.errors;
     }
@@ -52,7 +80,7 @@ public abstract class QuestionBase implements
     /**
      * @return generalFeedBack
      */
-    @Override
+
     public String getGeneralFeedBack() {
         return this.genFeedBack.getText();
     }
@@ -68,7 +96,7 @@ public abstract class QuestionBase implements
     /**
      * @return imageBase64
      */
-    @Override
+
     @XmlElement(name = "image_base64")
     public String getImageBase64() {
         return this.imageBase64;
@@ -77,7 +105,7 @@ public abstract class QuestionBase implements
     /**
      * @return imageURL
      */
-    @Override
+
     @XmlElement(name = "image")
     public String getImageUrl() {
         return this.imageURL;
@@ -86,7 +114,7 @@ public abstract class QuestionBase implements
     /**
      * @return name
      */
-    @Override
+
     public String getName() {
         return this.name.getText();
     }
@@ -102,7 +130,7 @@ public abstract class QuestionBase implements
     /**
      * @return penalty
      */
-    @Override
+
     @XmlElement(name = "penalty")
     public Float getPenalty() {
         return this.penalty;
@@ -111,7 +139,7 @@ public abstract class QuestionBase implements
     /**
      * @return questionText
      */
-    @Override
+
     @XmlElement(name = "questiontext")
     public QuestionText getQuestionText() {
         return this.questionText;
@@ -120,7 +148,7 @@ public abstract class QuestionBase implements
     /**
      * @return type
      */
-    @Override
+
     @XmlAttribute(name = "type")
     public QuestionType getQuestionType() {
         return this.questionType;
@@ -129,7 +157,7 @@ public abstract class QuestionBase implements
     /**
      * @return hidden
      */
-    @Override
+
     @XmlElement(name = "hidden")
     public Boolean isHidden() {
         return this.hidden;
