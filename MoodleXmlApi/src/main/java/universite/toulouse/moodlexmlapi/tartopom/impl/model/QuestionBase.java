@@ -18,11 +18,11 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionType;
  */
 @XmlDiscriminatorNode("@type")
 public abstract class QuestionBase implements
-    universite.toulouse.moodlexmlapi.core.data.Question{
+universite.toulouse.moodlexmlapi.core.data.Question{
 
     private Float defaultGrade;
     private List<QuestionError> errors;
-    private EnclosedText generalFeedBack;
+    private EnclosedText genFeedBack;
     private String imageBase64;
     private String imageURL;
     private EnclosedText name;
@@ -50,16 +50,16 @@ public abstract class QuestionBase implements
     /**
      * @return generalFeedBack
      */
-    public String getGeneralFeedback(){
-        return this.generalFeedBack.getText();
+    public String getGeneralFeedBack(){
+        return this.genFeedBack.getText();
     }
 
     /**
      * @return generalFeedback
      */
     @XmlElement(name="generalfeedback")
-    public EnclosedText getGeneralFeedBackBis() {
-        return this.generalFeedBack;
+    public EnclosedText getGenFeedBack() {
+        return this.genFeedBack;
     }
 
     /**
