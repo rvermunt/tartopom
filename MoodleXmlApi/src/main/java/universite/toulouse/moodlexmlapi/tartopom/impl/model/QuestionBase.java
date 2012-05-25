@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorNode;
 
@@ -72,7 +73,7 @@ public class QuestionBase implements
     /**
      * @return errors
      */
-
+    @XmlTransient
     public List<QuestionError> getErrors() {
         return this.errors;
     }
@@ -80,7 +81,6 @@ public class QuestionBase implements
     /**
      * @return generalFeedBack
      */
-
     public String getGeneralFeedBack() {
         return this.genFeedBack.getText();
     }
@@ -96,7 +96,6 @@ public class QuestionBase implements
     /**
      * @return imageBase64
      */
-
     @XmlElement(name = "image_base64")
     public String getImageBase64() {
         return this.imageBase64;
@@ -105,7 +104,6 @@ public class QuestionBase implements
     /**
      * @return imageURL
      */
-
     @XmlElement(name = "image")
     public String getImageUrl() {
         return this.imageURL;
@@ -115,6 +113,7 @@ public class QuestionBase implements
      * @return name
      */
 
+    @XmlTransient
     public String getName() {
         return this.name.getText();
     }
@@ -140,8 +139,20 @@ public class QuestionBase implements
      * @return questionText
      */
 
-    @XmlElement(name = "questiontext")
+    @Override
+    @XmlTransient
     public QuestionText getQuestionText() {
+        return new QuestionText(this.questionText.getText(),
+                this.questionText.getQuestionTextFormat());
+    }
+
+    /**
+     * Renvoie le texte de la question
+     *
+     * @return le texte de la question
+     */
+    @XmlElement(name = "questiontext")
+    public QuestionTextAdaptated getQuestionTextAdaptated() {
         return this.questionText;
     }
 
@@ -248,7 +259,8 @@ public class QuestionBase implements
      *            QuestionText
      */
     public void setQuestionText(QuestionText questionText) {
-        this.questionText = (QuestionTextAdaptated) questionText;
+        this.questionText = new QuestionTextAdaptated(questionText.getText(),
+                questionText.getQuestionTextFormat());
     }
 
     /**
