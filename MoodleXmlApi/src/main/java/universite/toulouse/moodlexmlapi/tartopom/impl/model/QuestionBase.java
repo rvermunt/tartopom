@@ -18,7 +18,7 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionType;
  */
 @XmlDiscriminatorNode("@type")
 public abstract class QuestionBase implements
-universite.toulouse.moodlexmlapi.core.data.Question{
+    universite.toulouse.moodlexmlapi.core.data.Question{
 
     private Float defaultGrade;
     private List<QuestionError> errors;
@@ -74,7 +74,7 @@ universite.toulouse.moodlexmlapi.core.data.Question{
      * @return imageURL
      */
     @XmlElement(name="image")
-    public String getImageUrl() {
+    public String getImageURL() {
         return this.imageURL;
     }
 
@@ -123,6 +123,100 @@ universite.toulouse.moodlexmlapi.core.data.Question{
     @XmlElement(name="hidden")
     public Boolean isHidden() {
         return this.hidden;
+    }
+
+
+    /**
+     * @param defaultGrade Float
+     */
+    public void setDefaultGrade(Float defaultGrade) {
+        this.defaultGrade = defaultGrade;
+    }
+
+
+    /**
+     * @param errors List<QuestionError>
+     */
+    public void setErrors(List<QuestionError> errors) {
+        this.errors = errors;
+    }
+
+
+    /**
+     * @param genFeedBack EnclosedText
+     */
+    public void setGenFeedBack(EnclosedText genFeedBack) {
+        this.genFeedBack = genFeedBack;
+    }
+
+    /**
+     * @param genFeedBack String
+     */
+    public void setGenFeedBack(String genFeedBack) {
+        this.genFeedBack = new EnclosedText(genFeedBack);
+    }
+
+
+    /**
+     * @param imageBase64 String
+     */
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
+
+
+    /**
+     * @param imageURL String
+     */
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+
+    /**
+     * @param name EnclosedText
+     */
+    public void setName(EnclosedText name) {
+        this.name = name;
+    }
+
+    /**
+     * @param name String
+     */
+    public void setName(String name) {
+        this.name = new EnclosedText(name);
+    }
+
+
+    /**
+     * @param penalty Float
+     */
+    public void setPenalty(Float penalty) {
+        this.penalty = penalty;
+    }
+
+
+    /**
+     * @param questionText QuestionText
+     */
+    public void setQuestionText(QuestionText questionText) {
+        this.questionText = questionText;
+    }
+
+
+    /**
+     * @param questionType QuestionType
+     */
+    public void setQuestionType(QuestionType questionType) {
+        this.questionType = questionType;
+    }
+
+
+    /**
+     * @param hidden boolean
+     */
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 
 }
