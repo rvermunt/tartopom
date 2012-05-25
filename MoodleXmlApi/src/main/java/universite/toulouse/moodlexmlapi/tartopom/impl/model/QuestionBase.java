@@ -13,12 +13,13 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 
 /**
  * Classe abstraite representant la base de tous les types de questions
+ * 
  * @author rvermunt
- *
+ * 
  */
 @XmlDiscriminatorNode("@type")
 public abstract class QuestionBase implements
-    universite.toulouse.moodlexmlapi.core.data.Question{
+        universite.toulouse.moodlexmlapi.core.data.Question {
 
     private Float defaultGrade;
     private List<QuestionError> errors;
@@ -27,22 +28,23 @@ public abstract class QuestionBase implements
     private String imageURL;
     private EnclosedText name;
     private Float penalty;
-    private QuestionText questionText;
+    private QuestionTextAdaptated questionText;
     private QuestionType questionType;
     private boolean hidden;
 
     /**
      * @return defaultGrade
      */
-    @XmlElement(name="defaultgrade")
+    @Override
+    @XmlElement(name = "defaultgrade")
     public Float getDefaultGrade() {
         return this.defaultGrade;
     }
 
-
     /**
      * @return errors
      */
+    @Override
     public List<QuestionError> getErrors() {
         return this.errors;
     }
@@ -50,14 +52,15 @@ public abstract class QuestionBase implements
     /**
      * @return generalFeedBack
      */
-    public String getGeneralFeedBack(){
+    @Override
+    public String getGeneralFeedBack() {
         return this.genFeedBack.getText();
     }
 
     /**
      * @return generalFeedback
      */
-    @XmlElement(name="generalfeedback")
+    @XmlElement(name = "generalfeedback")
     public EnclosedText getGenFeedBack() {
         return this.genFeedBack;
     }
@@ -65,7 +68,8 @@ public abstract class QuestionBase implements
     /**
      * @return imageBase64
      */
-    @XmlElement(name="image_base64")
+    @Override
+    @XmlElement(name = "image_base64")
     public String getImageBase64() {
         return this.imageBase64;
     }
@@ -73,30 +77,33 @@ public abstract class QuestionBase implements
     /**
      * @return imageURL
      */
-    @XmlElement(name="image")
-    public String getImageURL() {
+    @Override
+    @XmlElement(name = "image")
+    public String getImageUrl() {
         return this.imageURL;
     }
 
     /**
      * @return name
      */
-    @XmlElement(name="name")
-    public EnclosedText getNameBis() {
-        return this.name;
+    @Override
+    public String getName() {
+        return this.name.getText();
     }
 
     /**
      * @return name
      */
-    public String getName(){
-        return this.name.getText();
+    @XmlElement(name = "name")
+    public EnclosedText getNameBis() {
+        return this.name;
     }
 
     /**
      * @return penalty
      */
-    @XmlElement(name="penalty")
+    @Override
+    @XmlElement(name = "penalty")
     public Float getPenalty() {
         return this.penalty;
     }
@@ -104,7 +111,8 @@ public abstract class QuestionBase implements
     /**
      * @return questionText
      */
-    @XmlElement(name="questiontext")
+    @Override
+    @XmlElement(name = "questiontext")
     public QuestionText getQuestionText() {
         return this.questionText;
     }
@@ -112,7 +120,8 @@ public abstract class QuestionBase implements
     /**
      * @return type
      */
-    @XmlAttribute(name="type")
+    @Override
+    @XmlAttribute(name = "type")
     public QuestionType getQuestionType() {
         return this.questionType;
     }
@@ -120,103 +129,106 @@ public abstract class QuestionBase implements
     /**
      * @return hidden
      */
-    @XmlElement(name="hidden")
+    @Override
+    @XmlElement(name = "hidden")
     public Boolean isHidden() {
         return this.hidden;
     }
 
-
     /**
-     * @param defaultGrade Float
+     * @param defaultGrade
+     *            Float
      */
     public void setDefaultGrade(Float defaultGrade) {
         this.defaultGrade = defaultGrade;
     }
 
-
     /**
-     * @param errors List<QuestionError>
+     * @param errors
+     *            List<QuestionError>
      */
     public void setErrors(List<QuestionError> errors) {
         this.errors = errors;
     }
 
-
     /**
-     * @param genFeedBack EnclosedText
+     * @param genFeedBack
+     *            EnclosedText
      */
     public void setGenFeedBack(EnclosedText genFeedBack) {
         this.genFeedBack = genFeedBack;
     }
 
     /**
-     * @param genFeedBack String
+     * @param genFeedBack
+     *            String
      */
     public void setGenFeedBack(String genFeedBack) {
         this.genFeedBack = new EnclosedText(genFeedBack);
     }
 
+    /**
+     * @param hidden
+     *            boolean
+     */
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 
     /**
-     * @param imageBase64 String
+     * @param imageBase64
+     *            String
      */
     public void setImageBase64(String imageBase64) {
         this.imageBase64 = imageBase64;
     }
 
-
     /**
-     * @param imageURL String
+     * @param imageURL
+     *            String
      */
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
 
-
     /**
-     * @param name EnclosedText
+     * @param name
+     *            EnclosedText
      */
     public void setName(EnclosedText name) {
         this.name = name;
     }
 
     /**
-     * @param name String
+     * @param name
+     *            String
      */
     public void setName(String name) {
         this.name = new EnclosedText(name);
     }
 
-
     /**
-     * @param penalty Float
+     * @param penalty
+     *            Float
      */
     public void setPenalty(Float penalty) {
         this.penalty = penalty;
     }
 
-
     /**
-     * @param questionText QuestionText
+     * @param questionText
+     *            QuestionText
      */
     public void setQuestionText(QuestionText questionText) {
-        this.questionText = questionText;
+        this.questionText = (QuestionTextAdaptated) questionText;
     }
 
-
     /**
-     * @param questionType QuestionType
+     * @param questionType
+     *            QuestionType
      */
     public void setQuestionType(QuestionType questionType) {
         this.questionType = questionType;
-    }
-
-
-    /**
-     * @param hidden boolean
-     */
-    public void setHidden(boolean hidden) {
-        this.hidden = hidden;
     }
 
 }
