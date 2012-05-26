@@ -30,7 +30,7 @@ public class QuestionEssayTest {
 
     @Test
     public void testGraderInfo() {
-        GraderInfo graderInfo = new GraderInfo();
+        EnclosedText graderInfo = new EnclosedText();
 
         question.setGraderInfo(graderInfo);
 
