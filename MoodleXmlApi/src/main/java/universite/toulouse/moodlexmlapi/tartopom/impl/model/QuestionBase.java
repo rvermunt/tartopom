@@ -32,6 +32,13 @@ public class QuestionBase implements
     private boolean hidden;
 
     /**
+     * Constructeur vide
+     */
+    public QuestionBase() {
+
+    }
+
+    /**
      * @param defaultGrade Float
      * @param errors List<QuestionError>
      * @param genFeedBack EnclosedText
@@ -65,6 +72,7 @@ public class QuestionBase implements
      * @return defaultGrade
      */
 
+    @Override
     @XmlElement(name = "defaultgrade")
     public Float getDefaultGrade() {
         return this.defaultGrade;
@@ -73,6 +81,7 @@ public class QuestionBase implements
     /**
      * @return errors
      */
+    @Override
     @XmlTransient
     public List<QuestionError> getErrors() {
         return this.errors;
@@ -81,6 +90,7 @@ public class QuestionBase implements
     /**
      * @return generalFeedBack
      */
+    @Override
     public String getGeneralFeedBack() {
         return this.genFeedBack.getText();
     }
@@ -96,6 +106,7 @@ public class QuestionBase implements
     /**
      * @return imageBase64
      */
+    @Override
     @XmlElement(name = "image_base64")
     public String getImageBase64() {
         return this.imageBase64;
@@ -104,6 +115,7 @@ public class QuestionBase implements
     /**
      * @return imageURL
      */
+    @Override
     @XmlElement(name = "image")
     public String getImageUrl() {
         return this.imageURL;
@@ -113,6 +125,7 @@ public class QuestionBase implements
      * @return name
      */
 
+    @Override
     @XmlTransient
     public String getName() {
         return this.name.getText();
@@ -130,6 +143,7 @@ public class QuestionBase implements
      * @return penalty
      */
 
+    @Override
     @XmlElement(name = "penalty")
     public Float getPenalty() {
         return this.penalty;
@@ -160,6 +174,7 @@ public class QuestionBase implements
      * @return type
      */
 
+    @Override
     @XmlAttribute(name = "type")
     public QuestionType getQuestionType() {
         return this.questionType;
@@ -169,6 +184,7 @@ public class QuestionBase implements
      * @return hidden
      */
 
+    @Override
     @XmlElement(name = "hidden")
     public Boolean isHidden() {
         return this.hidden;

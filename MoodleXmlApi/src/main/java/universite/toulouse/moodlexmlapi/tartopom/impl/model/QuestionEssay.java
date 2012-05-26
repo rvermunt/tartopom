@@ -102,7 +102,8 @@ public class QuestionEssay extends QuestionBase {
     /**
      * Assigne le format de la réponse
      *
-     * @param responseFormat le format de la réponse
+     * @param responseFormat le format de la réponse parmi : editor,
+     *                       editorfilepicker, plain, monospaced
      */
     public void setResponseFormat(String responseFormat) {
         this.responseFormat = responseFormat;
