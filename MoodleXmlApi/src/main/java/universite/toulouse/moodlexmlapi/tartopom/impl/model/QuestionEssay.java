@@ -4,8 +4,6 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 
-import universite.toulouse.moodlexmlapi.core.data.QuestionType;
-
 /**
  * Question de type 'essay'.
  *
@@ -17,19 +15,30 @@ public class QuestionEssay extends QuestionBase {
     private String responseFormat;
     private int responseFieldLines;
     private int attachments;
-    private GraderInfo graderInfo;
+    private EnclosedText graderInfo;
 
     /**
-     * Constructeur par défaut (responseformat = editor, responsefieldlines =
-     * 15, attachments = 0, graderinfo = graderinfo par défaut)
+     * Constructeur vide.
      */
     public QuestionEssay() {
         super();
-        this.responseFormat = "editor";
-        this.responseFieldLines = 15;
-        this.attachments = 0;
-        this.graderInfo = new GraderInfo();
-        super.setQuestionType(QuestionType.essay);
+    }
+
+    /**
+     * Constructeur d'une question de type 'essay'.
+     *
+     * @param responseFormat le format
+     * @param responseFieldLines le nombre de ligne
+     * @param attachments le nombre d'attachements
+     * @param graderInfo le graderinfo
+     */
+    public QuestionEssay(String responseFormat, int responseFieldLines,
+            int attachments, EnclosedText graderInfo) {
+        super();
+        this.responseFormat = responseFormat;
+        this.responseFieldLines = responseFieldLines;
+        this.attachments = attachments;
+        this.graderInfo = graderInfo;
     }
 
     /**
@@ -48,7 +57,7 @@ public class QuestionEssay extends QuestionBase {
      * @return le contenu de graderinfo
      */
     @XmlElement(name = "graderinfo")
-    public GraderInfo getGraderInfo() {
+    public EnclosedText getGraderInfo() {
         return graderInfo;
     }
 
@@ -86,7 +95,7 @@ public class QuestionEssay extends QuestionBase {
      *
      * @param graderInfo le graderinfo
      */
-    public void setGraderInfo(GraderInfo graderInfo) {
+    public void setGraderInfo(EnclosedText graderInfo) {
         this.graderInfo = graderInfo;
     }
 

@@ -7,56 +7,61 @@ import javax.xml.bind.annotation.XmlTransient;
 import universite.toulouse.moodlexmlapi.core.data.QuestionTextFormat;
 
 /**
- * Recuperation du texte encapsulé
+ * Sous-question
  *
- * @author etu1
+ * @author natsu
  *
  */
-public class EnclosedText {
+public class SubQuestion {
 
     @XmlAttribute(name = "format")
     private String format;
     private String text;
+    private EnclosedText answer;
 
     /**
-     * Constructeur vide
+     * Constructeur vide.
      */
-    public EnclosedText() {
+    public SubQuestion() {
     }
 
     /**
-     * Constructed d'une balise contenant un texte et eventuellement un format
+     * Constructeur d'une sous-question.
      *
      * @param format le format
      * @param text le texte
+     * @param answer la réponse attendue
      */
-    public EnclosedText(QuestionTextFormat format, String text) {
+    public SubQuestion(QuestionTextFormat format, String text,
+            EnclosedText answer) {
         this.setFormat(format);
         this.text = text;
+        this.answer = answer;
     }
 
-    /**
-     * Instancie un nouveau EnclosedText
+    /** Renvoie la réponse.
      *
-     * @param text
-     *            String
+     * @return the answer
      */
-    public EnclosedText(String text) {
-        this.text = text;
+    @XmlElement(name = "answer")
+    public EnclosedText getAnswer() {
+        return answer;
     }
 
     /**
-     * Renvoie le format du texte.
+     * Renvoie le format de la sous-question.
      *
-     * @return le format du texte
+     * @return the format
      */
     @XmlTransient
     public QuestionTextFormat getFormat() {
-        return QuestionTextFormat.valueOf(this.format);
+        return QuestionTextFormat.valueOf(format);
     }
 
     /**
-     * @return text
+     * Renvoie le texte de la sous-question.
+     *
+     * @return the text
      */
     @XmlElement(name = "text")
     public String getText() {
@@ -64,7 +69,16 @@ public class EnclosedText {
     }
 
     /**
-     * Assigne le format. Facultatif.
+     * Assigne la réponse.
+     *
+     * @param answer la réponse prévue
+     */
+    public void setAnswer(EnclosedText answer) {
+        this.answer = answer;
+    }
+
+    /**
+     * Assigne le format.
      *
      * @param format le format
      */
@@ -73,11 +87,11 @@ public class EnclosedText {
     }
 
     /**
-     * @param text
-     *            String
+     * Assigne le texte.
+     *
+     * @param text le texte
      */
     public void setText(String text) {
         this.text = text;
     }
-
 }
