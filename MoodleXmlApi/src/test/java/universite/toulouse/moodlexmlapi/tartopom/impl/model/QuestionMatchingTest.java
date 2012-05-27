@@ -72,8 +72,10 @@ public class QuestionMatchingTest {
     @Test
     public void testShowNumCorrect() {
         question.setShowNumCorrect(true);
-
         Assert.assertTrue(question.isShowNumCorrect());
+
+        question.setShowNumCorrect(false);
+        Assert.assertFalse(question.isShowNumCorrect());
     }
 
     @Test

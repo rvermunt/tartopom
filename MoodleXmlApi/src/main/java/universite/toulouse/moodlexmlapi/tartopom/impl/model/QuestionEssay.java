@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 
+import universite.toulouse.moodlexmlapi.core.data.QuestionType;
+
 /**
  * Question de type 'essay'.
  *
@@ -22,6 +24,7 @@ public class QuestionEssay extends QuestionBase {
      */
     public QuestionEssay() {
         super();
+        super.setQuestionType(QuestionType.essay);
     }
 
     /**
@@ -35,6 +38,7 @@ public class QuestionEssay extends QuestionBase {
     public QuestionEssay(String responseFormat, int responseFieldLines,
             int attachments, EnclosedText graderInfo) {
         super();
+        super.setQuestionType(QuestionType.essay);
         this.responseFormat = responseFormat;
         this.responseFieldLines = responseFieldLines;
         this.attachments = attachments;

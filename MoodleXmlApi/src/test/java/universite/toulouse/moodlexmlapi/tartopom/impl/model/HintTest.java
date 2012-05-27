@@ -24,8 +24,10 @@ public class HintTest {
     @Test
     public void testClearWrong() {
         hint.setClearWrong(true);
-
         Assert.assertTrue(hint.isClearWrong());
+
+        hint.setClearWrong(false);
+        Assert.assertFalse(hint.isClearWrong());
     }
 
     @Test
@@ -38,8 +40,10 @@ public class HintTest {
     @Test
     public void testShowNumCorrect() {
         hint.setShowNumCorrect(false);
-
         Assert.assertFalse(hint.isShowNumCorrect());
+
+        hint.setShowNumCorrect(true);
+        Assert.assertTrue(hint.isShowNumCorrect());
     }
 
     @Test

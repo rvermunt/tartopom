@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 
+import universite.toulouse.moodlexmlapi.core.data.QuestionType;
+
 /**
  * Question de type 'matching'.
  *
@@ -32,6 +34,7 @@ public class QuestionMatching extends QuestionBase {
      */
     public QuestionMatching() {
         super();
+        super.setQuestionType(QuestionType.matching);
     }
 
     /**
@@ -51,6 +54,7 @@ public class QuestionMatching extends QuestionBase {
             EnclosedText incorrectFeedBack, EnclosedText showNumCorrect,
             List<SubQuestion> questions, List<Hint> hints) {
         super();
+        super.setQuestionType(QuestionType.matching);
         this.shuffleanswers = shuffleanswers;
         this.correctFeedBack = correctFeedBack;
         this.partiallycorrectFeedBack = partiallycorrectFeedBack;
