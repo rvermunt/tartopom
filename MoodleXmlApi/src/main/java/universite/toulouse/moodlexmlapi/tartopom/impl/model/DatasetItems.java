@@ -16,4 +16,17 @@ public class DatasetItems {
     })
     private ArrayList<DatasetItem> datasetItem;
 
+    /**
+     * @return datasetItem
+     */
+    public ArrayList<DatasetItem> getDatasetItem() {
+        return datasetItem;
+    }
+
+    /**
+     * @param datasetItem ArryList<DatasetItem>
+     */
+    public void setDatasetItem(ArrayList<DatasetItem> datasetItem) {
+        this.datasetItem = datasetItem;
+    }
 }
