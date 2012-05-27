@@ -10,11 +10,11 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionType;
  * Conteneur Xml de Question de type calculated
  * @author vermu0041
  */
-@XmlDiscriminatorValue("Calulated")
+@XmlDiscriminatorValue("calculated")
 public class QuestionCalculated extends QuestionBase {
 
 
-    private boolean shuffle;
+    private int shuffle;
     private Answer answer;
     private Units units;
 
@@ -32,14 +32,14 @@ public class QuestionCalculated extends QuestionBase {
      * @return shuffle
      */
     @XmlElement(name="shuffleanswers")
-    public boolean isShuffle() {
+    public int getShuffle() {
         return shuffle;
     }
 
     /**
      * @param shuffle boolean
      */
-    public void setShuffle(boolean shuffle) {
+    public void setShuffle(int shuffle) {
         this.shuffle = shuffle;
     }
 
