@@ -3,7 +3,6 @@ package universite.toulouse.moodlexmlapi.tartopom.impl.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,11 +14,11 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 public class QuestionBaseTest {
 
     QuestionBase qb;
-    QuestionTextAdaptated qt;
+    QuestionText qt;
 
     @Before
     public void setUp() throws Exception {
-        qt = new QuestionTextAdaptated();
+        qt = new QuestionText("", QuestionTextFormat.plain_text);
         qb = new QuestionBase(Float.valueOf("5.0"), null, new EnclosedText(
                 "feedback"), "base64", "imageUrl", new EnclosedText("name"),
                 Float.valueOf("10.0"), qt, QuestionType.calculated, false);
@@ -41,11 +40,6 @@ public class QuestionBaseTest {
     }
 
     @Test
-    public void testGetGenFeedBack() {
-        assertEquals(qb.getGenFeedBack().getText(), "feedback");
-    }
-
-    @Test
     public void testGetImageBase64() {
         assertEquals(qb.getImageBase64(), "base64");
     }
@@ -61,18 +55,15 @@ public class QuestionBaseTest {
     }
 
     @Test
-    public void testGetNameBis() {
-        assertEquals(qb.getNameBis().getText(), "name");
-    }
-
-    @Test
     public void testGetPenalty() {
         assertEquals(qb.getPenalty(), Float.valueOf("10.0"));
     }
 
     @Test
     public void testGetQuestionText() {
-        assertEquals(qb.getQuestionText(), qt);
+        assertEquals(qb.getQuestionText().getText(), qt.getText());
+        assertEquals(qb.getQuestionText().getQuestionTextFormat(),
+                qt.getQuestionTextFormat());
     }
 
     @Test
@@ -91,21 +82,14 @@ public class QuestionBaseTest {
         assertEquals(qb.getDefaultGrade(), Float.valueOf("18.0"));
     }
 
-    @Test
-    public void testSetErrors() {
-        fail("Not yet implemented");
-    }
+    /*
+     * @Test public void testSetErrors() { fail("Not yet implemented"); }
+     */
 
     @Test
     public void testSetGenFeedBackEnclosedText() {
-        qb.setGenFeedBack(new EnclosedText("newFeedBack"));
+        qb.setGeneralFeedBack(new EnclosedText("newFeedBack"));
         assertEquals(qb.getGeneralFeedBack(), "newFeedBack");
-    }
-
-    @Test
-    public void testSetGenFeedBackString() {
-        qb.setGenFeedBack("newFeedBack2");
-        assertEquals(qb.getGeneralFeedBack(), "newFeedBack2");
     }
 
     @Test
@@ -133,12 +117,6 @@ public class QuestionBaseTest {
     }
 
     @Test
-    public void testSetNameString() {
-        qb.setName("bibi");
-        assertEquals(qb.getName(), "bibi");
-    }
-
-    @Test
     public void testSetPenalty() {
         qb.setPenalty(Float.valueOf("120."));
         assertEquals(qb.getPenalty(), Float.valueOf("120."));
@@ -148,7 +126,9 @@ public class QuestionBaseTest {
     public void testSetQuestionText() {
         QuestionText text = new QuestionText("", QuestionTextFormat.html);
         qb.setQuestionText(text);
-        assertEquals(qb.getQuestionText(), text);
+        assertEquals(qb.getQuestionText().getText(), text.getText());
+        assertEquals(qb.getQuestionText().getQuestionTextFormat(),
+                text.getQuestionTextFormat());
     }
 
     @Test

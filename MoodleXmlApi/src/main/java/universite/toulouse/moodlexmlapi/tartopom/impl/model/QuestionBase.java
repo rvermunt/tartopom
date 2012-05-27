@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorNode;
@@ -17,18 +18,23 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionType;
  * @author rvermunt
  */
 @XmlDiscriminatorNode("@type")
+@XmlRootElement
 public class QuestionBase implements
         universite.toulouse.moodlexmlapi.core.data.Question {
 
     private Float defaultGrade;
     private List<QuestionError> errors;
+    @XmlElement(name = "generalfeedback")
     private EnclosedText genFeedBack;
     private String imageBase64;
     private String imageURL;
+    @XmlElement(name = "name")
     private EnclosedText name;
     private Float penalty;
+    @XmlElement(name = "questiontext")
     private QuestionTextAdaptated questionText;
-    private QuestionType questionType;
+    @XmlAttribute(name = "type")
+    private String questionType;
     private boolean hidden;
 
     /**
@@ -52,9 +58,8 @@ public class QuestionBase implements
      */
     public QuestionBase(Float defaultGrade, List<QuestionError> errors,
             EnclosedText genFeedBack, String imageBase64, String imageURL,
-            EnclosedText name, Float penalty,
-            QuestionTextAdaptated questionText, QuestionType questionType,
-            boolean hidden) {
+            EnclosedText name, Float penalty, QuestionText questionText,
+            QuestionType questionType, boolean hidden) {
         super();
         this.defaultGrade = defaultGrade;
         this.errors = errors;
@@ -63,8 +68,8 @@ public class QuestionBase implements
         this.imageURL = imageURL;
         this.name = name;
         this.penalty = penalty;
-        this.questionText = questionText;
-        this.questionType = questionType;
+        this.setQuestionText(questionText);
+        this.questionType = questionType.name();
         this.hidden = hidden;
     }
 
@@ -91,16 +96,9 @@ public class QuestionBase implements
      * @return generalFeedBack
      */
     @Override
+    @XmlTransient
     public String getGeneralFeedBack() {
         return this.genFeedBack.getText();
-    }
-
-    /**
-     * @return generalFeedback
-     */
-    @XmlElement(name = "generalfeedback")
-    public EnclosedText getGenFeedBack() {
-        return this.genFeedBack;
     }
 
     /**
@@ -132,14 +130,6 @@ public class QuestionBase implements
     }
 
     /**
-     * @return name
-     */
-    @XmlElement(name = "name")
-    public EnclosedText getNameBis() {
-        return this.name;
-    }
-
-    /**
      * @return penalty
      */
 
@@ -161,23 +151,13 @@ public class QuestionBase implements
     }
 
     /**
-     * Renvoie le texte de la question
-     *
-     * @return le texte de la question
-     */
-    @XmlElement(name = "questiontext")
-    public QuestionTextAdaptated getQuestionTextAdaptated() {
-        return this.questionText;
-    }
-
-    /**
      * @return type
      */
 
     @Override
-    @XmlAttribute(name = "type")
+    @XmlTransient
     public QuestionType getQuestionType() {
-        return this.questionType;
+        return QuestionType.valueOf(this.questionType);
     }
 
     /**
@@ -210,16 +190,8 @@ public class QuestionBase implements
      * @param genFeedBack
      *            EnclosedText
      */
-    public void setGenFeedBack(EnclosedText genFeedBack) {
+    public void setGeneralFeedBack(EnclosedText genFeedBack) {
         this.genFeedBack = genFeedBack;
-    }
-
-    /**
-     * @param genFeedBack
-     *            String
-     */
-    public void setGenFeedBack(String genFeedBack) {
-        this.genFeedBack = new EnclosedText(genFeedBack);
     }
 
     /**
@@ -255,14 +227,6 @@ public class QuestionBase implements
     }
 
     /**
-     * @param name
-     *            String
-     */
-    public void setName(String name) {
-        this.name = new EnclosedText(name);
-    }
-
-    /**
      * @param penalty
      *            Float
      */
@@ -284,7 +248,7 @@ public class QuestionBase implements
      *            QuestionType
      */
     public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType;
+        this.questionType = questionType.name();
     }
 
 }
