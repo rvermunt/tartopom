@@ -35,8 +35,9 @@ public class QuestionMultichoiceTest {
     public void testAnswers() {
         List<MultichoiceAnswer> subs = new ArrayList<MultichoiceAnswer>();
         subs.add(new MultichoiceAnswer(50, QuestionTextFormat.plain_text,
-                new EnclosedText("feedback")));
-        subs.add(new MultichoiceAnswer(30, QuestionTextFormat.plain_text, null));
+                new EnclosedText("feedback"), "réponse a"));
+        subs.add(new MultichoiceAnswer(30, QuestionTextFormat.plain_text, null,
+                "réponse B"));
         question.setAnswers(subs);
 
         Assert.assertEquals(subs, question.getAnswers());

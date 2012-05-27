@@ -43,4 +43,12 @@ public class MultichoiceAnswerTest {
 
         Assert.assertEquals(fraction, multi.getFraction());
     }
+
+    @Test
+    public void testText() {
+        String text = "Texte";
+        multi.setText(text);
+
+        Assert.assertEquals(text, multi.getText());
+    }
 }

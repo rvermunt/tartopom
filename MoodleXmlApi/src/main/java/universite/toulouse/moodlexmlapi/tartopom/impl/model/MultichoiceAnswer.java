@@ -18,6 +18,7 @@ public class MultichoiceAnswer {
     @XmlAttribute(name = "format")
     private String format;
     private EnclosedText feedback;
+    private String text;
 
     /**
      * Constructeur vide.
@@ -31,12 +32,14 @@ public class MultichoiceAnswer {
      * @param fraction entre 0 et 100, les points attribués
      * @param format le format
      * @param feedback le feedback
+     * @param text le texte
      */
     public MultichoiceAnswer(int fraction, QuestionTextFormat format,
-            EnclosedText feedback) {
+            EnclosedText feedback, String text) {
         this.fraction = fraction;
         this.format = format.name();
         this.feedback = feedback;
+        this.text = text;
     }
 
     /**
@@ -70,6 +73,16 @@ public class MultichoiceAnswer {
     }
 
     /**
+     * Renvoie le texte.
+     *
+     * @return the text
+     */
+    @XmlElement(name = "text")
+    public String getText() {
+        return text;
+    }
+
+    /**
      * Assigne lee feedback.
      *
      * @param feedback the feedback to set
@@ -94,5 +107,14 @@ public class MultichoiceAnswer {
      */
     public void setFraction(int fraction) {
         this.fraction = fraction;
+    }
+
+    /**
+     * Assigne le texte.
+     *
+     * @param text the text to set
+     */
+    public void setText(String text) {
+        this.text = text;
     }
 }
