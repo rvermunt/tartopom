@@ -34,6 +34,11 @@ public class Quiz implements universite.toulouse.moodlexmlapi.core.data.Quiz {
         return questions;
     }
 
+    /**
+     * Assigne les questions.
+     *
+     * @param questions les questions
+     */
     public void setQuestionList(List<Question> questions) {
 
         questionList = new ArrayList<QuestionBase>();

@@ -1,6 +1,6 @@
 package universite.toulouse.moodlexmlapi.tartopom.impl.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,22 +8,10 @@ import org.junit.Test;
 public class QuestionCalculatedTest {
 
     QuestionCalculated question;
+
     @Before
     public void setUp() throws Exception {
-        question=new QuestionCalculated();
-    }
-
-    @Test
-    public void testShuffle() {
-        question.setShuffle(true);
-        assertTrue(question.isShuffle());
-    }
-
-    @Test
-    public void testDatasetDefinitions() {
-        DatasetDefinitions datasetDefinitions = new DatasetDefinitions();
-        question.setDatasetDefinitions(datasetDefinitions);
-        assertEquals(datasetDefinitions, question.getDatasetDefinitions());
+        question = new QuestionCalculated();
     }
 
     @Test
@@ -34,10 +22,23 @@ public class QuestionCalculatedTest {
     }
 
     @Test
+    public void testDatasetDefinitions() {
+        DatasetDefinitions datasetDefinitions = new DatasetDefinitions();
+        question.setDatasetDefinitions(datasetDefinitions);
+        assertEquals(datasetDefinitions, question.getDatasetDefinitions());
+    }
+
+    @Test
+    public void testShuffle() {
+        question.setShuffle(0);
+        assertEquals(0, question.getShuffle());
+    }
+
+    @Test
     public void testUnits() {
         Units units = new Units();
         question.setUnits(units);
-        assertEquals(units,question.getUnits());
+        assertEquals(units, question.getUnits());
     }
 
 }
