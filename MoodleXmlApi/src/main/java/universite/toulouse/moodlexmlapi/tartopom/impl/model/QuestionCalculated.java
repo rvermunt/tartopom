@@ -42,20 +42,20 @@ public class QuestionCalculated extends QuestionBase {
      * @param shuffle shuffle
      * @param answer answer
      * @param units units
-     * @param datasetDefinitions
+     * @param datasetDefinitions dataset definitions
      */
     public QuestionCalculated(Float defaultGrade, EnclosedText genFeedBack,
             String imageBase64, String imageURL, EnclosedText name,
             Float penalty, QuestionText questionText, boolean hidden,
             int shuffle, Answer answer, Units units,
-            DatasetDefinitions datasetDefintions) {
+            DatasetDefinitions datasetDefinitions) {
 
         super(defaultGrade, genFeedBack, imageBase64, imageURL, name, penalty,
                 questionText, QuestionType.calculated, hidden);
         this.setShuffle(shuffle);
         this.setAnswer(answer);
         this.setUnits(units);
-        this.setDatasetDefinitions(datasetDefintions);
+        this.setDatasetDefinitions(datasetDefinitions);
     }
 
     /**

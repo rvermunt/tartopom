@@ -3,6 +3,7 @@ package universite.toulouse.moodlexmlapi.tartopom.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,6 +13,7 @@ import javax.xml.bind.Unmarshaller;
 import universite.toulouse.moodlexmlapi.core.InvalidQuizFormatException;
 import universite.toulouse.moodlexmlapi.core.InvalidStreamSizeException;
 import universite.toulouse.moodlexmlapi.core.QuizImportExportService;
+import universite.toulouse.moodlexmlapi.core.data.Question;
 import universite.toulouse.moodlexmlapi.tartopom.impl.model.ImportedQuiz;
 import universite.toulouse.moodlexmlapi.tartopom.impl.model.QuestionBase;
 import universite.toulouse.moodlexmlapi.tartopom.impl.model.QuestionCalculated;
@@ -101,10 +103,13 @@ public class ImportExportService implements QuizImportExportService {
             // transformation en ImportedQuiz
             quiz = new ImportedQuiz();
             quiz.setQuestionList(importedQuiz.getQuestionList());
+            quiz.setExtractedQuestionList(quiz.getQuestionList());
+            quiz.setProcessedQuestionList(quiz.getQuestionList());
+            quiz.setNonExtractedQuestionList(new ArrayList<Question>());
 
         }
         catch (JAXBException e) {
-            e.printStackTrace();
+            throw new InvalidQuizFormatException(e);
         }
 
         return quiz;

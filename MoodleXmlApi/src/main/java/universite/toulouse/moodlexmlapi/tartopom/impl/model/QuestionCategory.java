@@ -30,7 +30,7 @@ public class QuestionCategory extends QuestionBase {
     /**
      * Constructeur.
      *
-     * @param category
+     * @param category category
      */
     public QuestionCategory(String category) {
         super();

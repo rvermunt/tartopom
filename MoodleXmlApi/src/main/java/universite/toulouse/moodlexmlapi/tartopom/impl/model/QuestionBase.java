@@ -96,7 +96,12 @@ public class QuestionBase implements
     @Override
     @XmlTransient
     public String getGeneralFeedBack() {
-        return this.genFeedBack.getText();
+        if (this.genFeedBack != null) {
+            return this.genFeedBack.getText();
+        }
+        else {
+            return "";
+        }
     }
 
     /**
@@ -242,8 +247,11 @@ public class QuestionBase implements
      *            QuestionText
      */
     public void setQuestionText(QuestionText questionText) {
-        this.questionText = new QuestionTextAdaptated(questionText.getText(),
-                questionText.getQuestionTextFormat());
+        if (questionText != null) {
+            this.questionText = new QuestionTextAdaptated(
+                    questionText.getText(),
+                    questionText.getQuestionTextFormat());
+        }
     }
 
     /**
