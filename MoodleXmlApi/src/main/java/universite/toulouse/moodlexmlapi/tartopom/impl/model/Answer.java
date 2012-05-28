@@ -2,12 +2,15 @@ package universite.toulouse.moodlexmlapi.tartopom.impl.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Conteneur Xml de type Answer
  * @author vermu0041
  *
  */
+
+@XmlRootElement
 public class Answer {
 
     private String fraction;

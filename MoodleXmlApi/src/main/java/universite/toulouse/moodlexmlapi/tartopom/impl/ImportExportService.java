@@ -20,6 +20,8 @@ import universite.toulouse.moodlexmlapi.tartopom.impl.model.QuestionEssay;
 import universite.toulouse.moodlexmlapi.tartopom.impl.model.QuestionMatching;
 import universite.toulouse.moodlexmlapi.tartopom.impl.model.QuestionMultichoice;
 import universite.toulouse.moodlexmlapi.tartopom.impl.model.QuestionNumerical;
+import universite.toulouse.moodlexmlapi.tartopom.impl.model.QuestionShortAnswer;
+import universite.toulouse.moodlexmlapi.tartopom.impl.model.QuestionTrueFalse;
 import universite.toulouse.moodlexmlapi.tartopom.impl.model.Quiz;
 
 /**
@@ -66,7 +68,8 @@ public class ImportExportService implements QuizImportExportService {
                     QuestionCategory.class, QuestionCloze.class,
                     QuestionDescription.class, QuestionEssay.class,
                     QuestionMatching.class, QuestionMultichoice.class,
-                    QuestionNumerical.class);
+                    QuestionNumerical.class, QuestionTrueFalse.class,
+                    QuestionShortAnswer.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
             // parsing du xml
