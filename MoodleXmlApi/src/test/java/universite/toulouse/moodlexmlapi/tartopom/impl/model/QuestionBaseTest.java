@@ -19,9 +19,10 @@ public class QuestionBaseTest {
     @Before
     public void setUp() throws Exception {
         qt = new QuestionText("", QuestionTextFormat.plain_text);
-        qb = new QuestionBase(Float.valueOf("5.0"), null, new EnclosedText(
-                "feedback"), "base64", "imageUrl", new EnclosedText("name"),
-                Float.valueOf("10.0"), qt, QuestionType.calculated, false);
+        qb = new QuestionBase(Float.valueOf("5.0"),
+                new EnclosedText("feedback"), "base64", "imageUrl",
+                new EnclosedText("name"), Float.valueOf("10.0"), qt,
+                QuestionType.calculated, false);
     }
 
     @Test
