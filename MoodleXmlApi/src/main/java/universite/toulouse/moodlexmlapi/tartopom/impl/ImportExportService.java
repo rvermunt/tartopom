@@ -1,10 +1,12 @@
 package universite.toulouse.moodlexmlapi.tartopom.impl;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import universite.toulouse.moodlexmlapi.core.InvalidQuizFormatException;
@@ -41,8 +43,29 @@ public class ImportExportService implements QuizImportExportService {
     @Override
     public OutputStream exportQuiz(
             universite.toulouse.moodlexmlapi.core.data.Quiz quiz) {
-        // TODO Auto-generated method stub
-        return null;
+
+        OutputStream out = null;
+
+        try {
+            // configuration de Jaxb pour le marshalling
+            JAXBContext context = JAXBContext.newInstance(Quiz.class,
+                    QuestionBase.class, QuestionCalculated.class,
+                    QuestionCategory.class, QuestionCloze.class,
+                    QuestionDescription.class, QuestionEssay.class,
+                    QuestionMatching.class, QuestionMultichoice.class,
+                    QuestionNumerical.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty("jaxb.formatted.output", true);
+
+            // marshalling vers un outputstream
+            out = new ByteArrayOutputStream();
+            marshaller.marshal(quiz, out);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return out;
     }
 
     /**
