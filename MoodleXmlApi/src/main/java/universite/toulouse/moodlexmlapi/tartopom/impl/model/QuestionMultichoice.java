@@ -146,7 +146,7 @@ public class QuestionMultichoice extends QuestionBase {
      *
      * @return the shuffleAnswers
      */
-    @XmlElement(name = "suffleanswers")
+    @XmlElement(name = "shuffleanswers")
     public boolean isShuffleAnswers() {
         return shuffleAnswers;
     }

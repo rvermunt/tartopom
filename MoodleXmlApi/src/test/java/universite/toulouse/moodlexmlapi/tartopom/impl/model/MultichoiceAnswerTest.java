@@ -38,10 +38,10 @@ public class MultichoiceAnswerTest {
 
     @Test
     public void testFraction() {
-        int fraction = 50;
+        double fraction = 33.3;
         multi.setFraction(fraction);
 
-        Assert.assertEquals(fraction, multi.getFraction());
+        Assert.assertEquals(fraction, multi.getFraction(), 0.0);
     }
 
     @Test

@@ -14,7 +14,7 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionTextFormat;
  */
 public class MultichoiceAnswer {
 
-    private int fraction;
+    private double fraction;
     @XmlAttribute(name = "format")
     private String format;
     private EnclosedText feedback;
@@ -68,7 +68,7 @@ public class MultichoiceAnswer {
      * @return the fraction
      */
     @XmlAttribute(name = "fraction")
-    public int getFraction() {
+    public double getFraction() {
         return fraction;
     }
 
@@ -105,7 +105,7 @@ public class MultichoiceAnswer {
      *
      * @param fraction the fraction to set
      */
-    public void setFraction(int fraction) {
+    public void setFraction(double fraction) {
         this.fraction = fraction;
     }
 
