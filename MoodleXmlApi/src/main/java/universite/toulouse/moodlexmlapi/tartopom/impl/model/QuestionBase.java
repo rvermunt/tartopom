@@ -33,7 +33,7 @@ public class QuestionBase implements
     private Float penalty;
     @XmlElement(name = "questiontext")
     private QuestionTextAdaptated questionText;
-    @XmlAttribute(name = "type")
+    @XmlTransient
     private String questionType;
     @XmlElement(name = "hidden")
     private int hidden;
