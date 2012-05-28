@@ -11,14 +11,12 @@ import javax.xml.bind.annotation.XmlElements;
  */
 public class DatasetItems {
 
-    @XmlElements({
-        @XmlElement(name="dataset_item")
-    })
     private ArrayList<DatasetItem> datasetItem;
 
     /**
      * @return datasetItem
      */
+    @XmlElements({ @XmlElement(name = "dataset_item") })
     public ArrayList<DatasetItem> getDatasetItem() {
         return datasetItem;
     }

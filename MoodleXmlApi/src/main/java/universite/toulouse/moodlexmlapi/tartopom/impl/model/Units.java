@@ -11,14 +11,12 @@ import javax.xml.bind.annotation.XmlElements;
  */
 public class Units {
 
-    @XmlElements({
-        @XmlElement(name="unit")
-    })
     private ArrayList<Unit> unit;
 
     /**
      * @return unit
      */
+    @XmlElements({ @XmlElement(name = "unit") })
     public ArrayList<Unit> getUnit() {
         return unit;
     }
@@ -30,7 +28,4 @@ public class Units {
         this.unit = unit;
     }
 
-
 }
-
-
