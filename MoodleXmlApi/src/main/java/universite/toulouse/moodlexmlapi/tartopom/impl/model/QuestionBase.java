@@ -46,7 +46,6 @@ public class QuestionBase implements
 
     /**
      * @param defaultGrade Float
-     * @param errors List<QuestionError>
      * @param genFeedBack EnclosedText
      * @param imageBase64 String
      * @param imageURL String
@@ -56,13 +55,12 @@ public class QuestionBase implements
      * @param questionType QuestionType
      * @param hidden boolean
      */
-    public QuestionBase(Float defaultGrade, List<QuestionError> errors,
-            EnclosedText genFeedBack, String imageBase64, String imageURL,
-            EnclosedText name, Float penalty, QuestionText questionText,
+    public QuestionBase(Float defaultGrade, EnclosedText genFeedBack,
+            String imageBase64, String imageURL, EnclosedText name,
+            Float penalty, QuestionText questionText,
             QuestionType questionType, boolean hidden) {
         super();
         this.defaultGrade = defaultGrade;
-        this.errors = errors;
         this.genFeedBack = genFeedBack;
         this.imageBase64 = imageBase64;
         this.imageURL = imageURL;

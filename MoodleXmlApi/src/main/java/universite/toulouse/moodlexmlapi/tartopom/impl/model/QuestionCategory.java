@@ -28,6 +28,17 @@ public class QuestionCategory extends QuestionBase {
     }
 
     /**
+     * Constructeur.
+     *
+     * @param category
+     */
+    public QuestionCategory(String category) {
+        super();
+        this.setQuestionType(QuestionType.category);
+        this.setCategory(category);
+    }
+
+    /**
      * Renvoie la catégorie.
      *
      * @return the category

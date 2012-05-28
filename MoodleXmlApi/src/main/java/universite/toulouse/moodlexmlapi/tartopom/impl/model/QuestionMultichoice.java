@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 
+import universite.toulouse.moodlexmlapi.core.data.QuestionText;
 import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 
 /**
@@ -43,6 +44,14 @@ public class QuestionMultichoice extends QuestionBase {
     /**
      * Constructeur d'une question de type 'multichoice'.
      *
+     * @param defaultGrade defaultGrade
+     * @param genFeedBack general feedback
+     * @param imageBase64 imageBase64
+     * @param imageURL imageURL
+     * @param name name
+     * @param penalty penalty
+     * @param questionText question text
+     * @param hidden hidden
      * @param single vrai : une seule réponse, faux : plusieurs réponses
      * @param shuffleAnswers faut-il mélanger les réponses
      * @param answerNumbering le type de numérotation
@@ -54,12 +63,17 @@ public class QuestionMultichoice extends QuestionBase {
      * @param answers les réponses possibles
      * @param hints les indices
      */
-    public QuestionMultichoice(boolean single, boolean shuffleAnswers,
+    public QuestionMultichoice(Float defaultGrade, EnclosedText genFeedBack,
+            String imageBase64, String imageURL, EnclosedText name,
+            Float penalty, QuestionText questionText, boolean hidden,
+            boolean single, boolean shuffleAnswers,
             AnswerNumbering answerNumbering, EnclosedText correctFeedBack,
             EnclosedText partiallycorrectFeedBack,
             EnclosedText incorrectFeedBack, boolean showNumCorrect,
             List<MultichoiceAnswer> answers, List<Hint> hints) {
-        super();
+
+        super(defaultGrade, genFeedBack, imageBase64, imageURL, name, penalty,
+                questionText, QuestionType.multichoice, hidden);
         this.single = single;
         this.shuffleAnswers = shuffleAnswers;
         this.setAnswerNumbering(answerNumbering);

@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 
+import universite.toulouse.moodlexmlapi.core.data.QuestionText;
 import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 
 /**
@@ -40,6 +41,14 @@ public class QuestionMatching extends QuestionBase {
     /**
      * Constructeur d'une question de type 'matching'
      *
+     * @param defaultGrade defaultGrade
+     * @param genFeedBack general feedback
+     * @param imageBase64 imageBase64
+     * @param imageURL imageURL
+     * @param name name
+     * @param penalty penalty
+     * @param questionText question text
+     * @param hidden hidden
      * @param shuffleanswers si les réponses doivent être mélangées
      * @param correctFeedBack le feedback en cas de réponse correcte
      * @param partiallycorrectFeedBack le feedback en case de réponse
@@ -49,17 +58,21 @@ public class QuestionMatching extends QuestionBase {
      * @param questions les sous-questions
      * @param hints les indices
      */
-    public QuestionMatching(int shuffleanswers, EnclosedText correctFeedBack,
+    public QuestionMatching(Float defaultGrade, EnclosedText genFeedBack,
+            String imageBase64, String imageURL, EnclosedText name,
+            Float penalty, QuestionText questionText, boolean hidden,
+            int shuffleanswers, EnclosedText correctFeedBack,
             EnclosedText partiallycorrectFeedBack,
-            EnclosedText incorrectFeedBack, EnclosedText showNumCorrect,
+            EnclosedText incorrectFeedBack, boolean showNumCorrect,
             List<SubQuestion> questions, List<Hint> hints) {
-        super();
-        super.setQuestionType(QuestionType.matching);
+
+        super(defaultGrade, genFeedBack, imageBase64, imageURL, name, penalty,
+                questionText, QuestionType.matching, hidden);
         this.shuffleanswers = shuffleanswers;
         this.correctFeedBack = correctFeedBack;
         this.partiallycorrectFeedBack = partiallycorrectFeedBack;
         this.incorrectFeedBack = incorrectFeedBack;
-        this.showNumCorrect = showNumCorrect;
+        this.setShowNumCorrect(showNumCorrect);
         this.questions = questions;
         this.hints = hints;
     }

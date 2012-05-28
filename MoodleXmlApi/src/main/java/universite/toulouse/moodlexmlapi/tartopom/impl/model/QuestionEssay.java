@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 
+import universite.toulouse.moodlexmlapi.core.data.QuestionText;
 import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 
 /**
@@ -30,15 +31,27 @@ public class QuestionEssay extends QuestionBase {
     /**
      * Constructeur d'une question de type 'essay'.
      *
+     * @param defaultGrade defaultGrade
+     * @param genFeedBack general feedback
+     * @param imageBase64 imageBase64
+     * @param imageURL imageURL
+     * @param name name
+     * @param penalty penalty
+     * @param questionText question text
+     * @param hidden hidden
      * @param responseFormat le format
      * @param responseFieldLines le nombre de ligne
      * @param attachments le nombre d'attachements
      * @param graderInfo le graderinfo
      */
-    public QuestionEssay(String responseFormat, int responseFieldLines,
-            int attachments, EnclosedText graderInfo) {
-        super();
-        super.setQuestionType(QuestionType.essay);
+    public QuestionEssay(Float defaultGrade, EnclosedText genFeedBack,
+            String imageBase64, String imageURL, EnclosedText name,
+            Float penalty, QuestionText questionText, boolean hidden,
+            String responseFormat, int responseFieldLines, int attachments,
+            EnclosedText graderInfo) {
+
+        super(defaultGrade, genFeedBack, imageBase64, imageURL, name, penalty,
+                questionText, QuestionType.essay, hidden);
         this.responseFormat = responseFormat;
         this.responseFieldLines = responseFieldLines;
         this.attachments = attachments;

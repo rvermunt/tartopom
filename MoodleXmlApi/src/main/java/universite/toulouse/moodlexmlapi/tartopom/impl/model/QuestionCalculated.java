@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 
+import universite.toulouse.moodlexmlapi.core.data.QuestionText;
 import universite.toulouse.moodlexmlapi.core.data.QuestionType;
 
 /**
@@ -12,7 +13,6 @@ import universite.toulouse.moodlexmlapi.core.data.QuestionType;
  */
 @XmlDiscriminatorValue("calculated")
 public class QuestionCalculated extends QuestionBase {
-
 
     private int shuffle;
     private Answer answer;
@@ -23,32 +23,78 @@ public class QuestionCalculated extends QuestionBase {
     /**
      * Constructeur vide de QuestionCalculated
      */
-    public QuestionCalculated(){
+    public QuestionCalculated() {
         super();
         super.setQuestionType(QuestionType.calculated);
     }
 
     /**
-     * @return shuffle
+     * Constructeur.
+     *
+     * @param defaultGrade defaultGrade
+     * @param genFeedBack general feedback
+     * @param imageBase64 imageBase64
+     * @param imageURL imageURL
+     * @param name name
+     * @param penalty penalty
+     * @param questionText question text
+     * @param hidden hidden
+     * @param shuffle shuffle
+     * @param answer answer
+     * @param units units
+     * @param datasetDefinitions
      */
-    @XmlElement(name="shuffleanswers")
-    public int getShuffle() {
-        return shuffle;
+    public QuestionCalculated(Float defaultGrade, EnclosedText genFeedBack,
+            String imageBase64, String imageURL, EnclosedText name,
+            Float penalty, QuestionText questionText, boolean hidden,
+            int shuffle, Answer answer, Units units,
+            DatasetDefinitions datasetDefintions) {
+
+        super(defaultGrade, genFeedBack, imageBase64, imageURL, name, penalty,
+                questionText, QuestionType.calculated, hidden);
+        this.setShuffle(shuffle);
+        this.setAnswer(answer);
+        this.setUnits(units);
+        this.setDatasetDefinitions(datasetDefintions);
     }
 
     /**
-     * @param shuffle boolean
+     * @return answer
      */
-    public void setShuffle(int shuffle) {
-        this.shuffle = shuffle;
+    @XmlElement(name = "answer")
+    public Answer getAnswer() {
+        return answer;
     }
 
     /**
      * @return datasetDefinitions
      */
-    @XmlElement(name="dataset_definitions")
+    @XmlElement(name = "dataset_definitions")
     public DatasetDefinitions getDatasetDefinitions() {
         return datasetDefinitions;
+    }
+
+    /**
+     * @return shuffle
+     */
+    @XmlElement(name = "shuffleanswers")
+    public int getShuffle() {
+        return shuffle;
+    }
+
+    /**
+     * @return units
+     */
+    @XmlElement(name = "units")
+    public Units getUnits() {
+        return units;
+    }
+
+    /**
+     * @param answer Answer
+     */
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
     /**
@@ -59,27 +105,10 @@ public class QuestionCalculated extends QuestionBase {
     }
 
     /**
-     * @return answer
+     * @param shuffle boolean
      */
-    @XmlElement(name="answer")
-    public Answer getAnswer() {
-        return answer;
-    }
-
-    /**
-     * @param answer Answer
-     */
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
-    }
-
-
-    /**
-     * @return units
-     */
-    @XmlElement(name="units")
-    public Units getUnits() {
-        return units;
+    public void setShuffle(int shuffle) {
+        this.shuffle = shuffle;
     }
 
     /**
