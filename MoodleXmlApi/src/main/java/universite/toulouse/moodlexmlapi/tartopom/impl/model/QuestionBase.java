@@ -35,7 +35,8 @@ public class QuestionBase implements
     private QuestionTextAdaptated questionText;
     @XmlAttribute(name = "type")
     private String questionType;
-    private boolean hidden;
+    @XmlElement(name = "hidden")
+    private int hidden;
 
     /**
      * Constructeur vide
@@ -70,7 +71,7 @@ public class QuestionBase implements
         this.penalty = penalty;
         this.setQuestionText(questionText);
         this.questionType = questionType.name();
-        this.hidden = hidden;
+        this.setHidden(hidden);
     }
 
     /**
@@ -165,9 +166,9 @@ public class QuestionBase implements
      */
 
     @Override
-    @XmlElement(name = "hidden")
+    @XmlTransient
     public Boolean isHidden() {
-        return this.hidden;
+        return this.hidden == 1;
     }
 
     /**
@@ -199,7 +200,12 @@ public class QuestionBase implements
      *            boolean
      */
     public void setHidden(boolean hidden) {
-        this.hidden = hidden;
+        if (hidden) {
+            this.hidden = 1;
+        }
+        else {
+            this.hidden = 0;
+        }
     }
 
     /**
